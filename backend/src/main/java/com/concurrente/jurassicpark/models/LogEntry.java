@@ -17,20 +17,17 @@ public class LogEntry {
 
     private String message;
 
-    private String level;
+    @Enumerated(EnumType.STRING)
+    private LogLevel level;
 
     private LocalDateTime timestamp;
-
-    // Getters y Setters
 
     public LogEntry() {
     }
 
-    public LogEntry(String message, String level) {
+    public LogEntry(String message, LogLevel level) {
         this.message = message;
         this.level = level;
         this.timestamp = LocalDateTime.now();
     }
-
-    // Getters y Setters
 }
