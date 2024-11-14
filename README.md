@@ -28,31 +28,15 @@ https://github.com/user-attachments/assets/a2485634-2c52-4f1e-93bc-227adc7882e7
 - **Monitorización en Tiempo Real**: Sensores que registran métricas (movimiento, temperatura, frecuencia cardíaca) y generan alertas de actividad de los dinosaurios.
 
 ### 🐳 **Docker**:
-- **Docker**: Utilizado para contenerizar tanto la BBDD como el backend y el frontend, asegurando la portabilidad y consistencia en cualquier entorno.
-- **Docker Compose**: Permite levantar tanto el frontend como el backend de manera sencilla y simultánea.
+- **Docker Compose**: Permite levantar tanto la BBDD como el backend y frontend de manera sencilla y simultánea.
 
-## 🛠️ Modos de Ejecución
+## 🛠️ Ejecición de la aplicación
 
-### 1. 🐳 **Ejecutar mediante Docker Hub**
-La imagen preconstruida se encuentra en Docker Hub y puede descargarse fácilmente:
-
-```bash
-docker pull dacalite/jurassic-park:latest
-docker run -p 8080:8080 -p 5173:5173 dacalite/jurassic-park:latest
-```
-
-### 2. 🔧 **Ejecutar con Docker Compose**
-Ejecuta el proyecto completo (frontend y backend) desde la raíz del proyecto:
+### 🔧 **Levantar servicios con Docker Compose**
+Ejecuta el proyecto completo (BBDD, frontend y backend) desde la raíz del proyecto:
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 La aplicación estará disponible en [http://localhost:5173](http://localhost:5173)
-
-
-## 📦 Repositorio en Docker Hub
-
-Puedes descargar la imagen del proyecto desde Docker Hub:
-
-[🔗 Enlace al repositorio de Docker Hub](https://hub.docker.com/repository/docker/dacalite/jurassic-park/general)
