@@ -83,7 +83,7 @@ export default function AuthPage({ authSession }: LoginProps) {
   return (
     <div className='select-none w-full h-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]'>
       <div className='hidden lg:block mt-auto pt-10 mb-auto ml-24'>
-        <Logo />
+        <Logo/>
       </div>
       <div className='flex items-center justify-center pb-2'>
         <div className='mx-auto grid w-[350px] gap-6'>
