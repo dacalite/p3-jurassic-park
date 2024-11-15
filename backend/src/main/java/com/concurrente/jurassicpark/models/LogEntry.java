@@ -17,6 +17,8 @@ public class LogEntry {
 
     private String message;
 
+    private String island;
+
     @Enumerated(EnumType.STRING)
     private LogLevel level;
 
@@ -25,9 +27,10 @@ public class LogEntry {
     public LogEntry() {
     }
 
-    public LogEntry(String message, LogLevel level) {
+    public LogEntry(String message, LogLevel level, String idIsland) {
         this.message = message;
         this.level = level;
         this.timestamp = LocalDateTime.now();
+        this.island = idIsland;
     }
 }

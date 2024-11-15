@@ -55,7 +55,7 @@ public class Jaula {
             dinosaurioService.eliminarDinosaurio(dinosaurio);
             detenerLectura();
             String motivo = MOTIVOS_MUERTE[random.nextInt(MOTIVOS_MUERTE.length)];
-            loggingService.logDeath(String.format("[%s %s] >> El dinosaurio ha muerto por %s", islaId, jaulaId, motivo));
+            loggingService.logDeath(String.format("[%s] >> El dinosaurio ha muerto por %s", jaulaId, motivo), islaId);
             this.dinosaurio = null;
         }
     }
@@ -63,13 +63,13 @@ public class Jaula {
     public void iniciarLectura() {
         if (dinosaurio != null) {
             subscription = sensorService.getAllSensorReadings(dayService.obtenerDuracionDiaEnSegundos())
-                    .map(reading -> String.format("[%s %s] >> %s", islaId, jaulaId, reading))
+                    .map(reading -> String.format("[%s] >> %s", jaulaId, reading))
                     .subscribe(this::logReading);
         }
     }
 
     private void logReading(String reading) {
-        loggingService.logMeasurement(reading);
+        loggingService.logMeasurement(reading, islaId);
     }
 
     public void detenerLectura() {

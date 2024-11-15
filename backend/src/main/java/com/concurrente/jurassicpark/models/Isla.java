@@ -72,7 +72,7 @@ public class Isla {
                     // Solicitar una petición de crianza si la ocupación es baja
                     String solicitud = "Solicitud de crianza para " + islaId;
                     bufferSolicitud.put(solicitud);
-                    loggingService.logRequestinosaur(String.format("[%s] >> Solicitud de incubación enviada a Centro de Crianza", islaId));
+                    loggingService.logRequestinosaur(String.format("Solicitud de incubación %s enviada a Centro de Crianza", tipoIsla), islaId);
                 }
 
                 // Intentar obtener una respuesta del bufferRespuesta sin bloquear

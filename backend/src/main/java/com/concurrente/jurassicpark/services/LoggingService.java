@@ -15,33 +15,33 @@ public class LoggingService {
     @Autowired
     private LogEntryRepository logEntryRepository;
 
-    public void logMeasurement(String event) {
+    public void logMeasurement(String event, String idIsla) {
         logger.info("Measurement: {}", event);
-        saveLog(event, LogLevel.MEASUREMENT);
+        saveLog(event, LogLevel.MEASUREMENT, idIsla);
     }
 
-    public void logDeath(String event) {
+    public void logDeath(String event, String idIsla) {
         logger.info("Death: {}", event);
-        saveLog(event, LogLevel.DEATH);
+        saveLog(event, LogLevel.DEATH, idIsla);
     }
 
-    public void logSendDinosaur(String event) {
+    public void logSendDinosaur(String event, String idIsla) {
         logger.info("Send Dinosaur: {}", event);
-        saveLog(event, LogLevel.SEND_DINOSAUR);
+        saveLog(event, LogLevel.SEND_DINOSAUR, idIsla);
     }
 
-    public void logRequestinosaur(String event) {
+    public void logRequestinosaur(String event, String idIsla) {
         logger.info("Request Dinosaur: {}", event);
-        saveLog(event, LogLevel.REQUEST_DINOSAUR);
+        saveLog(event, LogLevel.REQUEST_DINOSAUR, idIsla);
     }
 
-    public void logError(String error) {
+    public void logError(String error, String idIsla) {
         logger.error("Error: {}", error);
-        saveLog(error, LogLevel.ERROR);
+        saveLog(error, LogLevel.ERROR, idIsla);
     }
 
-    private void saveLog(String message, LogLevel level) {
-        LogEntry logEntry = new LogEntry(message, level);
+    private void saveLog(String message, LogLevel level, String idIsla) {
+        LogEntry logEntry = new LogEntry(message, level, idIsla);
         logEntryRepository.save(logEntry);
     }
 
