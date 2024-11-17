@@ -24,3 +24,8 @@ export interface AuditLog {
   level: LogLevel
   island: Island
 }
+
+export enum AppScreen {
+  MAP,
+  LOGS,
+}

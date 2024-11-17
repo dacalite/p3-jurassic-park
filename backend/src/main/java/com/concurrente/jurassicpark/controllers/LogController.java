@@ -4,7 +4,6 @@ import com.concurrente.jurassicpark.annotations.RequiresAuth;
 import com.concurrente.jurassicpark.models.LogEntry;
 import com.concurrente.jurassicpark.repositories.LogEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

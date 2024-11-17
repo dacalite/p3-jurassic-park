@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DayService {
-    private int duracionDiaEnSegundos = 4;  // Valor por defecto: 10 segundos
-    private int segundosEclosion = duracionDiaEnSegundos / 4;
+    private int duracionDiaEnSegundos = 4;
+    private int segundosEclosion = duracionDiaEnSegundos / 2;
 
     public int obtenerDuracionDiaEnSegundos() {
         return duracionDiaEnSegundos;
@@ -17,7 +17,7 @@ public class DayService {
 
     public void establecerDuracionDiaEnSegundos(int duracionSegundos) {
         this.duracionDiaEnSegundos = duracionSegundos;
-        this.segundosEclosion = duracionDiaEnSegundos / 3;
+        this.segundosEclosion = duracionDiaEnSegundos / 2;
     }
 
 }
