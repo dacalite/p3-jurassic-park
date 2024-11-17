@@ -108,6 +108,15 @@ public class JurassicparkApplication implements CommandLineRunner {
         islas.add(isla3);
         parqueService.setIslas(islas);
 
+        // Esperar 10 segundos antes de continuar
+        try {
+            System.out.println("Esperando 10 segundos antes de iniciar el monitoreo...");
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("La espera fue interrumpida: " + e.getMessage());
+        }
+
         // Iniciar el monitoreo de las islas
         isla1.iniciarMonitoreo();
         isla2.iniciarMonitoreo();
