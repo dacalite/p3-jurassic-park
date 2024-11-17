@@ -4,7 +4,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { AuditLog, Island, LogLevel } from '@/lib/types'
 import { generatePDF } from '@/lib/logs'
-import axios from 'axios'
 import MapIcon from '@/components/assets/mapIcon.webp'
 
 const logTypeInfo = {
@@ -18,22 +17,17 @@ const logTypeInfo = {
   ERROR: { label: 'error', color: 'bg-red-500 hover:bg-red-600' },
 }
 
-function LogsPage({ goToMap }: { goToMap: () => void }) {
-  const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]) // Estado para los logs
+function LogsPage({
+  goToMap,
+  fetchLogs,
+  auditLogs,
+}: {
+  goToMap: () => void
+  fetchLogs: () => void
+  auditLogs: AuditLog[]
+}) {
   const [activeIsland, setActiveIsland] = useState<'todos' | Island>('todos')
   const [activeType, setActiveType] = useState<'todos' | LogLevel>('todos')
-
-  // Función para obtener logs del servidor
-  const fetchLogs = async () => {
-    try {
-      const response = await axios.get(
-        'http://localhost:8080/public/api/v1/logs'
-      )
-      setAuditLogs(response.data) // Actualizar estado con los logs obtenidos
-    } catch (error) {
-      console.error('Error fetching logs:', error)
-    }
-  }
 
   // Polling continuo con un intervalo de 1 segundo
   useEffect(() => {
