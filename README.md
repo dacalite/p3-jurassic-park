@@ -12,7 +12,11 @@ El backend maneja toda la lógica reactiva y de concurrencia, mientras que el fr
 
 ¡Mira una breve demo del proyecto en acción!
 
-https://github.com/user-attachments/assets/a2485634-2c52-4f1e-93bc-227adc7882e7
+
+
+https://github.com/user-attachments/assets/c40089fd-62ef-45d0-8be7-ba8d00d3e692
+
+
 
 ## 🚀 Tecnologías Utilizadas
 
