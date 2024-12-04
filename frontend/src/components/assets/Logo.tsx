@@ -8,8 +8,8 @@ function Logo() {
     >
       <defs>
         <linearGradient id='a'>
-          <stop stop-color='#7d141d' offset='0' />
-          <stop stop-color='#ff1e27' offset='1' />
+          <stop stopColor='#7d141d' offset='0' />
+          <stop stopColor='#ff1e27' offset='1' />
         </linearGradient>
       </defs>
       <path
