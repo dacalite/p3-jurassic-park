@@ -6,10 +6,14 @@ interface GenericPageProps extends BasePageProps {
   children: ReactNode // Componente específico a renderizar
 }
 
-const GenericPage: React.FC<GenericPageProps> = ({ logoutUser, children }) => {
+const GenericPage: React.FC<GenericPageProps> = ({
+  logoutUser,
+  children,
+  hasHeader = false,
+}) => {
   return (
     <div className='select-none w-screen h-screen p-0 m-0 overflow-hidden'>
-      <Header handleLogout={logoutUser} />
+      {hasHeader && <Header handleLogout={logoutUser} />}
       {/* Renderizamos el componente específico como children */}
       {children}
     </div>
