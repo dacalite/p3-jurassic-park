@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import ImgMapa from '@/components/assets/mapa.webp'
-import logIcon from '@/components/assets/logIcon.webp'
 import axios from 'axios'
 
 function OccupancyCircle({ percentage }: { percentage: number }) {
@@ -21,10 +19,10 @@ function OccupancyCircle({ percentage }: { percentage: number }) {
   )
 }
 
-function MapPage({ goToLogs }: { goToLogs: () => void }) {
+function MapPage() {
   const [occupancy, setOccupancy] = useState<number[]>([0, 0, 0])
 
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchOccupancy = async () => {
       try {
         const response = await axios.get(
@@ -41,22 +39,12 @@ function MapPage({ goToLogs }: { goToLogs: () => void }) {
     const interval = setInterval(fetchOccupancy, 1000)
 
     return () => clearInterval(interval) // Cleanup interval on unmount
-  }, [])
+  }, []) */
 
   return (
-    <div className='w-full h-full flex justify-center items-center pt-20 relative'>
-      <img src={ImgMapa} alt='Cargando mapa...' />
-
-      {/* Botón para ir a Logs */}
-      <img
-        src={logIcon}
-        alt='Logs'
-        className='w-24 h-24 absolute top-32 left-20 border border-4 p-2 rounded-3xl bg-white bg-opacity-30 cursor-pointer'
-        onClick={goToLogs}
-      />
-
+    <div className='z-10 w-full h-full flex justify-center items-center relative'>
       {/* Componentes de ocupación */}
-      <div className='absolute flex flex-col mt-10 gap-44 right-28'>
+      <div className='absolute flex flex-col gap-44 left-28'>
         <OccupancyCircle percentage={occupancy[0]} />
 
         <OccupancyCircle percentage={occupancy[1]} />

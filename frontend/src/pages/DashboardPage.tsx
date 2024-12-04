@@ -5,7 +5,7 @@ import { BasePageProps } from '@/lib/types'
 const DashboardPage: React.FC<BasePageProps> = ({ logoutUser }) => {
   return (
     <GenericPage logoutUser={logoutUser}>
-      <Dashboard />
+      <Dashboard logoutUser={logoutUser}/>
     </GenericPage>
   )
 }
