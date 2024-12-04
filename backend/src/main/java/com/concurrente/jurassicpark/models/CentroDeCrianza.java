@@ -46,7 +46,7 @@ public class CentroDeCrianza implements Runnable {
                         // Crea un dinosaurio incubado y lo envía al buffer de respuesta
                         String dinosaurioIncubado = "Dinosaurio incubado para solicitud: " + solicitud;
                         respuestaBuffer.put(dinosaurioIncubado);
-                        loggingService.logSendDinosaur(String.format("Dinosaurio %s incubado y enviado a Isla %d", TipoDinosaurio.values()[i], i + 1), "Centro de Crianza");
+                        loggingService.logSendDinosaur(String.format("Dinosaurio incubado y enviado a Isla %d", i + 1), "Centro de Crianza");
                     }
                 }
 

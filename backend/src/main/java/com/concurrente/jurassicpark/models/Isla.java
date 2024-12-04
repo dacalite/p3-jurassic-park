@@ -32,6 +32,12 @@ public class Isla {
     @Autowired
     private LoggingService loggingService;
 
+    public Isla(ParqueService parqueService, DayService dayService, LoggingService loggingService) {
+        this.parqueService = parqueService;
+        this.dayService = dayService;
+        this.loggingService = loggingService;
+    }
+
     // Función que devuelve el porcentaje de ocupación de la isla
     public double calcularPorcentajeOcupacion() {
         int totalJaulas = jaulas.size();
@@ -59,11 +65,7 @@ public class Isla {
         return null;
     }
 
-    public void iniciarMonitoreo() {
-        new Thread(this::monitorizarOcupacion).start();
-    }
-
-    private void monitorizarOcupacion() {
+    public void monitorizarOcupacion() {
         while (true) {
             try {
                 Thread.sleep(dayService.obtenerDuracionDiaEnSegundos() * 1000L);
@@ -71,8 +73,20 @@ public class Isla {
                 if (porcentajeOcupacion < 50) {
                     // Solicitar una petición de crianza si la ocupación es baja
                     String solicitud = "Solicitud de crianza para " + islaId;
-                    bufferSolicitud.put(solicitud);
-                    loggingService.logRequestinosaur(String.format("Solicitud de incubación %s enviada a Centro de Crianza", tipoIsla), islaId);
+
+                    // Verifica si el buffer de solicitudes tiene espacio antes de hacer put
+                    if (bufferSolicitud.remainingCapacity() > 0) {
+                        bufferSolicitud.put(solicitud);
+                        loggingService.logRequestinosaur(
+                                String.format("Solicitud de incubación %s enviada al Centro de Crianza", tipoIsla),
+                                islaId
+                        );
+                    } else {
+                        loggingService.logError(
+                                String.format("No se pudo enviar la solicitud de incubación %s: buffer lleno", tipoIsla),
+                                islaId
+                        );
+                    }
                 }
 
                 // Intentar obtener una respuesta del bufferRespuesta sin bloquear
