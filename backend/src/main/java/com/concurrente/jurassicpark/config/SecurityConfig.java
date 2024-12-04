@@ -51,6 +51,7 @@ public class SecurityConfig {
                         .requestMatchers("/public/config/cambiarDuracionDia").permitAll()
                         .requestMatchers("/public/config/obtenerDuracionDia").permitAll()
                         .requestMatchers("/public/parque/ocupacion").permitAll()
+                        .requestMatchers("/startup/initialize").permitAll()
                         .requestMatchers("/public/api/v1/health").permitAll()
                         .requestMatchers("/public/api/v1/logs").permitAll()
                         .requestMatchers("/public/api/v1/jwt-check").permitAll()
