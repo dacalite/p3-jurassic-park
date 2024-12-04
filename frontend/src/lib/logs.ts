@@ -1,6 +1,22 @@
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import { AuditLog } from './types'
+import { SetStateAction } from 'react'
+import axios from 'axios'
+
+// Función para obtener logs del servidor
+export const fetchLogs = async ({
+  updateValue,
+}: {
+  updateValue: (value: SetStateAction<AuditLog[]>) => void
+}) => {
+  try {
+    const response = await axios.get('http://localhost:8080/public/api/v1/logs')
+    updateValue(response.data) // Actualizar estado con los logs obtenidos
+  } catch (error) {
+    console.error('Error fetching logs:', error)
+  }
+}
 
 export function generatePDF({ logEntries }: { logEntries: AuditLog[] }) {
   const doc = new jsPDF()

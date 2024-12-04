@@ -6,6 +6,7 @@ export interface AuthResponse {
 
 export interface BasePageProps {
   logoutUser: () => void
+  hasHeader?: boolean
 }
 
 export type LogLevel =
@@ -15,7 +16,8 @@ export type LogLevel =
   | 'SEND_DINOSAUR'
   | 'ERROR'
 
-export type Island = 'Isla 1' | 'Isla 2' | 'Isla 3' | "Centro de Crianza"
+export type Island = 'Isla 1' | 'Isla 2' | 'Isla 3' | 'Centro de Crianza'
+export type IslandType = 'Carnivoro' | 'Herbivoro' | 'Aereo'
 
 export interface AuditLog {
   id: number
@@ -29,3 +31,5 @@ export enum AppScreen {
   MAP,
   LOGS,
 }
+
+export type VolumeLevel = 0 | 0.33 | 0.66 | 1
