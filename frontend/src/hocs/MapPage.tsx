@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { SetStateAction, useEffect, useState } from 'react'
+import Tutorial from './Tutorial'
 
 function OccupancyCircle({ percentage }: { percentage: number }) {
   const isLowOccupancy = percentage < 30
@@ -19,8 +19,25 @@ function OccupancyCircle({ percentage }: { percentage: number }) {
   )
 }
 
-function MapPage() {
+const tutorialSteps = [
+  {
+    src: 'tut3.riv',
+    stateMachine: 'State Machine 1',
+    inputName: 'close',
+    positionClass: 'bottom-0 left-0',
+  },
+]
+
+function MapPage({
+  tutorialCompleted,
+  setTutorialCompleted,
+}: {
+  tutorialCompleted: boolean
+  setTutorialCompleted: (value: SetStateAction<boolean>) => void
+}) {
   const [occupancy, setOccupancy] = useState<number[]>([0, 0, 0])
+
+  useEffect(() => console.log(tutorialCompleted), [tutorialCompleted])
 
   /* useEffect(() => {
     const fetchOccupancy = async () => {
@@ -42,16 +59,26 @@ function MapPage() {
   }, []) */
 
   return (
-    <div className='z-10 w-full h-full flex justify-center items-center relative'>
-      {/* Componentes de ocupación */}
-      <div className='absolute flex flex-col gap-44 left-28'>
-        <OccupancyCircle percentage={occupancy[0]} />
+    <>
+      <div className='z-10 w-full h-full flex justify-center items-center relative'>
+        {/* Componentes de ocupación */}
+        <div className='absolute flex flex-col gap-44 left-28'>
+          <OccupancyCircle percentage={occupancy[0]} />
 
-        <OccupancyCircle percentage={occupancy[1]} />
+          <OccupancyCircle percentage={occupancy[1]} />
 
-        <OccupancyCircle percentage={occupancy[2]} />
+          <OccupancyCircle percentage={occupancy[2]} />
+        </div>
       </div>
-    </div>
+      {!tutorialCompleted && (
+        <Tutorial
+          steps={tutorialSteps}
+          onComplete={() => {
+            setTutorialCompleted(true)
+          }}
+        />
+      )}
+    </>
   )
 }
 

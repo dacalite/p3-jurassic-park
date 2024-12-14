@@ -15,6 +15,7 @@ function Dashboard({ logoutUser }: BasePageProps) {
   const [volumeLevel, setVolumeLevel] = useState<VolumeLevel>(1)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [startupCompleted, setStartupCompleted] = useState<boolean>(false)
+  const [tutorialCompleted, setTutorialCompleted] = useState<boolean>(false)
 
   useEffect(() => {
     // Montar el audio solo una vez
@@ -71,7 +72,10 @@ function Dashboard({ logoutUser }: BasePageProps) {
 
   const screens = {
     [AppScreen.MAP]: startupCompleted ? (
-      <MapPage />
+      <MapPage
+        setTutorialCompleted={setTutorialCompleted}
+        tutorialCompleted={tutorialCompleted}
+      />
     ) : (
       <StartupPage
         start={({ islandTypes }) => {

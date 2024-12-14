@@ -15,7 +15,7 @@ export const initParkIslands = async ({
       name: `Isla ${index + 1}`,
       type: type.toUpperCase(),
       dinosaurs: 10,
-      bufferSize: 10,
+      bufferSize: 20,
     }))
 
     await axios.post('http://localhost:8080/startup/initialize', requestBody)

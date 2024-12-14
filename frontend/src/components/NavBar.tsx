@@ -58,7 +58,7 @@ export default function NavBar({
         <button
           onClick={() =>
             window.open(
-              'https://github.com/dacalite/p3-jurassic-park',
+              'https://github.com/dacalite/p4-jurassic-park',
               '_blank'
             )
           }
