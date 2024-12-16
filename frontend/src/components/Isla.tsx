@@ -8,12 +8,13 @@ import { GrassIcon } from './assets/GrassIcon'
 import { WingIcon } from './assets/WingIcon'
 import { useRive, useStateMachineInput } from '@rive-app/react-canvas'
 import { IslandType } from '@/lib/types'
+import { useEffect } from 'react'
 
 function Isla({
   changeType,
   currentType,
 }: {
-  changeType: (type: IslandType) => void
+  changeType?: (type: IslandType) => void
   currentType: IslandType | undefined
 }) {
   const { RiveComponent: IslaVacia } = useRive({
@@ -42,7 +43,7 @@ function Isla({
   const onSelectAereo = useStateMachineInput(rive, 'State Machine 1', 'Aereo')
 
   const handleTypeChange = (type: IslandType) => {
-    changeType(type)
+    changeType?.(type)
     switch (type) {
       case 'Carnivoro':
         onSelectCarnivoro?.fire()
@@ -57,6 +58,10 @@ function Isla({
         break
     }
   }
+
+  useEffect(() => {
+    currentType && handleTypeChange(currentType)
+  }, [])
 
   return (
     <div className='w-[250px] h-[250px] relative'>

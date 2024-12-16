@@ -1,23 +1,13 @@
 import { SetStateAction, useEffect, useState } from 'react'
 import Tutorial from './Tutorial'
-
-function OccupancyCircle({ percentage }: { percentage: number }) {
-  const isLowOccupancy = percentage < 30
-
-  return (
-    <div
-      className={`relative w-20 h-20 flex items-center justify-center rounded-full border-4 
-      ${
-        isLowOccupancy
-          ? 'border-red-500 bg-red-100 text-red-800'
-          : 'border-blue-500 bg-blue-100 text-blue-800'
-      } 
-      font-bold text-lg`}
-    >
-      <span>{percentage}%</span>
-    </div>
-  )
-}
+import axios from 'axios'
+import { CircularProgressbar } from 'react-circular-progressbar'
+import 'react-circular-progressbar/dist/styles.css'
+import Isla from '@/components/Isla'
+import { IslandType } from '@/lib/types'
+import { WingIcon } from '@/components/assets/WingIcon'
+import { MeatIcon } from '@/components/assets/MeatIcon'
+import { GrassIcon } from '@/components/assets/GrassIcon'
 
 const tutorialSteps = [
   {
@@ -31,15 +21,15 @@ const tutorialSteps = [
 function MapPage({
   tutorialCompleted,
   setTutorialCompleted,
+  islandTypes,
 }: {
   tutorialCompleted: boolean
   setTutorialCompleted: (value: SetStateAction<boolean>) => void
+  islandTypes: (IslandType | undefined)[]
 }) {
-  const [occupancy, setOccupancy] = useState<number[]>([0, 0, 0])
+  const [occupancy, setOccupancy] = useState<number[]>([])
 
-  useEffect(() => console.log(tutorialCompleted), [tutorialCompleted])
-
-  /* useEffect(() => {
+  useEffect(() => {
     const fetchOccupancy = async () => {
       try {
         const response = await axios.get(
@@ -56,18 +46,47 @@ function MapPage({
     const interval = setInterval(fetchOccupancy, 1000)
 
     return () => clearInterval(interval) // Cleanup interval on unmount
-  }, []) */
+  }, [])
 
   return (
     <>
       <div className='z-10 w-full h-full flex justify-center items-center relative'>
-        {/* Componentes de ocupación */}
-        <div className='absolute flex flex-col gap-44 left-28'>
-          <OccupancyCircle percentage={occupancy[0]} />
+        <div className='absolute flex gap-44 left-28 w-3/4 h-4/5'>
+          {occupancy.map((percentage, index) => {
+            if (percentage === null || percentage === undefined) return null
 
-          <OccupancyCircle percentage={occupancy[1]} />
+            const islandName = `Isla ${index + 1}`
+            const islandType = islandTypes[index]
+            const renderIcon = () => {
+              switch (islandType) {
+                case 'Aereo':
+                  return <WingIcon />
+                case 'Carnivoro':
+                  return <MeatIcon />
+                case 'Herbivoro':
+                  return <GrassIcon />
+                default:
+                  return null
+              }
+            }
 
-          <OccupancyCircle percentage={occupancy[2]} />
+            return (
+              <div
+                key={index}
+                className='bg-white rounded-xl w-1/4 h-full p-12 bg-opacity-95 flex flex-col gap-24 items-center'
+              >
+                <div className='flex w-full justify-center items-center gap-6'>
+                  <h1 className='text-4xl'>{islandName}</h1>
+                  {renderIcon()}
+                </div>
+                <Isla currentType={islandType} />
+                <CircularProgressbar
+                  value={percentage}
+                  text={`${percentage}%`}
+                />
+              </div>
+            )
+          })}
         </div>
       </div>
       {!tutorialCompleted && (

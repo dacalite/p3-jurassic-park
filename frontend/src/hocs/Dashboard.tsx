@@ -1,7 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import MapPage from '@/hocs/MapPage'
 import LogsPage from '@/hocs/LogsPage'
-import { AppScreen, AuditLog, BasePageProps, VolumeLevel } from '@/lib/types'
+import {
+  AppScreen,
+  AuditLog,
+  BasePageProps,
+  IslandType,
+  VolumeLevel,
+} from '@/lib/types'
 import { fetchLogs } from '@/lib/logs'
 import bso from '@/components/assets/bso.mp3'
 import backgroundImg from '@/components/assets/background.webp'
@@ -16,6 +22,11 @@ function Dashboard({ logoutUser }: BasePageProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [startupCompleted, setStartupCompleted] = useState<boolean>(false)
   const [tutorialCompleted, setTutorialCompleted] = useState<boolean>(false)
+  const [islandTypes, setIslandTypes] = useState<(IslandType | undefined)[]>([
+    undefined,
+    undefined,
+    undefined,
+  ])
 
   useEffect(() => {
     // Montar el audio solo una vez
@@ -75,10 +86,12 @@ function Dashboard({ logoutUser }: BasePageProps) {
       <MapPage
         setTutorialCompleted={setTutorialCompleted}
         tutorialCompleted={tutorialCompleted}
+        islandTypes={islandTypes}
       />
     ) : (
       <StartupPage
         start={({ islandTypes }) => {
+          setIslandTypes(islandTypes)
           initParkIslands({ islands: islandTypes }).then((value: boolean) =>
             value
               ? setStartupCompleted(true)
