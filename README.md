@@ -1,4 +1,4 @@
-# 🦖 Jurassic Park - Sistema de Monitoreo y Gestión de Dinosaurios (+Rive para frontend)
+# 🦖 Jurassic Park - Sistema de Monitoreo y Gestión de Dinosaurios (+RiveApp para frontend)
 
 Este repositorio contiene el sistema de monitoreo reactivo y gestión de dinosaurios para **Jurassic Park**, diseñado para simular y gestionar un ecosistema con poblaciones de dinosaurios en islas específicas, utilizando Spring Boot y WebFlux para manejo eficiente de datos y concurrencia en tiempo real.
 
@@ -8,13 +8,16 @@ El sistema gestiona la actividad de dinosaurios en distintas islas (voladoras, c
 
 El backend maneja toda la lógica reactiva y de concurrencia, mientras que el frontend permite la visualización en tiempo real de métricas y estadísticas sobre el estado de las islas.
 
-## 🎥 Demo del Proyecto
+## 🎥 Demo del Proyecto (Activa el sonido en el reproductor!)
 
 ¡Mira una breve demo del proyecto en acción!
 
 
 
-https://github.com/user-attachments/assets/c40089fd-62ef-45d0-8be7-ba8d00d3e692
+
+https://github.com/user-attachments/assets/7acc0ae7-6818-45d4-871b-4cebf8c6eb43
+
+
 
 
 
